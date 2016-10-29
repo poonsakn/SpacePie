@@ -36,7 +36,7 @@ public class WorldRenderer {
 		batch.draw(rocketRegion, pos.x-(Width/2) , pos.y-(Height/2)
 				, OriginX , OriginY //origin x,y
 				, Width, Height //width, height
-				, 1 , 1 //scale x,y
+				, (float) 0.5 , (float) 0.5 //scale x,y
 				, 0 //rotation
 //				, 0 , 0 //src x,y
 //				, 200, 200 //srcWidthe, height
