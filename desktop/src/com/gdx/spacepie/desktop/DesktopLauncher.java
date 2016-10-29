@@ -7,8 +7,8 @@ import com.gdx.spacepie.SpacePie;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.width = 960;
-		config.height = 540;
+		config.width = SpacePie.screenWidth;
+		config.height = SpacePie.screenHeight;
 		new LwjglApplication(new SpacePie(), config);
 	}
 }
