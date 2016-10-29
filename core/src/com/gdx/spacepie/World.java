@@ -12,4 +12,7 @@ public class World {
 	Rocket getRocket() {
 		return rocket;
 	}
+	public void update(float delta) {
+				
+	}
 }

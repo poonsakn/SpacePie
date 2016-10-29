@@ -13,6 +13,7 @@ public class GameScreen extends ScreenAdapter {
 	private Rocket rocket;
 	private Texture bgImg;
 	World world;
+	WorldRenderer worldRenderer;
 	
 	public GameScreen(SpacePie spacePie) {
 		this.spacePie = spacePie;
@@ -24,26 +25,18 @@ public class GameScreen extends ScreenAdapter {
 
 	@Override
 	public void render(float delta) {
-		update(delta);
+		world.update(delta);
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		
 		SpriteBatch batch = spacePie.batch;
 		batch.begin();
-		Vector2 pos = world.getRocket().getPosition();
 		batch.draw(bgImg, 0,0,Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-	//	batch.draw(rocketImg, pos.x-100 , pos.y-100); //(100.100) center of rocketImg
-		batch.draw(rocketImg, pos.x , pos.y
-				,100,100 //origin x,y
-				, 200, 200 //width, height
-				, 1 , 1 //scale x,y
-				, 20 //rotation
-				, 0 , 0 //src x,y
-				, 200, 200 //srcWidthe, height
-				, false, false // flip x,y
-				);
 		batch.end();
+
+		worldRenderer = new WorldRenderer(spacePie, world);
+		worldRenderer.render(delta);
 	}
 	
-	private void update(float delta) {
-	}
+	
 }
