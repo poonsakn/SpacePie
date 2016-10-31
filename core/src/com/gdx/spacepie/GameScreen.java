@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector3;
 
 public class GameScreen extends ScreenAdapter {
 	private SpacePie spacePie;
@@ -59,12 +58,6 @@ public class GameScreen extends ScreenAdapter {
 		}
 		else if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
 			Rocket.updateRocketRotation(1);
-		}
-	}
-	
-//	private void updateCamera () {
-//		camera.translate(world.getRocket().getPosition());
-//	}
-	
-	
+		} 
+	}	
 }

@@ -1,6 +1,5 @@
 package com.gdx.spacepie;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -12,12 +11,8 @@ public class WorldRenderer {
 	private Texture rocketImg;
 	private TextureRegion rocketRegion;
 	private float Width, Height, OriginX, OriginY;
-	private SpriteBatch batch;
-
 	public WorldRenderer (SpacePie spacePie, World world) {
 		this.spacePie = spacePie;
-		batch = spacePie.batch;
-		
 		this.world = world;
 		
 		rocketImg = new Texture("rocket.png");
