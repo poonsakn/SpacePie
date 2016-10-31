@@ -14,5 +14,6 @@ public class World {
 	}
 	public void update(float delta) {
 		rocket.update();
+		rocket.updatePosition();
 	}
 }
