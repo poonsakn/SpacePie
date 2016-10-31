@@ -13,6 +13,6 @@ public class World {
 		return rocket;
 	}
 	public void update(float delta) {
-				
+		rocket.update();
 	}
 }

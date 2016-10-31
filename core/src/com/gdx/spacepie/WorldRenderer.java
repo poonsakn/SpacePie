@@ -11,7 +11,7 @@ public class WorldRenderer {
 	private World world;
 	private Texture rocketImg;
 	private TextureRegion rocketRegion;
-	private float Width, Height, OriginX, OriginY, rotation;
+	private float Width, Height, OriginX, OriginY;
 	private SpriteBatch batch;
 
 	public WorldRenderer (SpacePie spacePie, World world) {
@@ -29,6 +29,7 @@ public class WorldRenderer {
 	}
 	
 	public void render (float delta) {
+//		update(delta);
 		SpriteBatch batch = spacePie.batch;
 		batch.begin();
 		Vector2 pos = world.getRocket().getPosition();
@@ -37,11 +38,12 @@ public class WorldRenderer {
 				, OriginX , OriginY //origin x,y
 				, Width, Height //width, height
 				, (float) 0.5 , (float) 0.5 //scale x,y
-				, 0 //rotation
-//				, 0 , 0 //src x,y
-//				, 200, 200 //srcWidthe, height
-//				, false, false // flip x,y
+				, Rocket.rotation //rotation
 				);
 		batch.end();
 	}
+	
+//	public static void update(float delta) {
+//		rotation += 10;
+//	}
 }
