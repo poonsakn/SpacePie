@@ -43,10 +43,10 @@ public class GameScreen extends ScreenAdapter {
 	
 	private void updateRocketDirection () {
 		if(Gdx.input.isKeyPressed(Keys.LEFT)) {
-			Rocket.rotation += 5;
+			Rocket.updateRocketRotation(-1);
 		}
 		else if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
-			Rocket.rotation -= 5;
+			Rocket.updateRocketRotation(1);
 		}
 	}
 }
