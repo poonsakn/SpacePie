@@ -6,11 +6,14 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureWrap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class GameScreen extends ScreenAdapter {
 	private SpacePie spacePie;
-	static Texture bgImg;
+	static Texture bgImg, bgImg1, bgImg2, bgImg3, bgImg4;
+	private int mapSize = 10;
 	OrthographicCamera camera = new OrthographicCamera(SpacePie.screenWidth , SpacePie.screenHeight);
 	World world;
 	WorldRenderer worldRenderer;
@@ -20,6 +23,11 @@ public class GameScreen extends ScreenAdapter {
 		this.spacePie = spacePie;
 		new Texture("rocket.png");
 		bgImg = new Texture("bg.png");
+		
+        bgImg.setWrap(TextureWrap.Repeat, TextureWrap.Repeat);
+//        TextureRegion bgImgRegion = new TextureRegion(bgImg);
+//        bgImgRegion.setRegion(0,0,bgImg.getWidth()*3,bgImg.getHeight()*3);
+//		
 		
 		world = new World (spacePie);
 	}
@@ -37,7 +45,22 @@ public class GameScreen extends ScreenAdapter {
 		
 
 		batch.begin();
-		batch.draw(bgImg, 0,0,Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+//		batch.draw(bgImg, 0,0, bgImg.getWidth(), bgImg.getHeight());
+		
+		int gridX = (int) (bgImg.getWidth() * (Math.floor(world.getRocket().getPosition().x / bgImg.getWidth())));
+		int gridY = (int) (bgImg.getHeight() * (Math.floor(world.getRocket().getPosition().y / bgImg.getHeight())));
+		for (int i = -mapSize; i <= mapSize; i++) {
+			for (int j = -mapSize; j <= mapSize; j++) {
+				batch.draw(bgImg, (i*bgImg.getWidth()) + gridX, (j*bgImg.getHeight()) + gridY);
+			}
+		}
+		
+//		batch.draw(bgImg, gridX, gridY);
+
+		System.out.println("grid" + gridX + "." + gridY + "_____________" 
+				+ (Math.floor(world.getRocket().getPosition().x / bgImg.getWidth())) + " " + (Math.floor(world.getRocket().getPosition().y / bgImg.getWidth())));
+		
+		
 		batch.end();
 
 		worldRenderer = new WorldRenderer(spacePie, world);

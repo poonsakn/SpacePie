@@ -5,7 +5,7 @@ public class World {
 	private Asteroid asteroid;
 	
 	World (SpacePie spacePie) {
-		rocket = new Rocket(SpacePie.screenWidth/2 , SpacePie.screenHeight/2);
+		rocket = new Rocket(0,0);
 	}
 	Rocket getRocket() {
 		return rocket;
