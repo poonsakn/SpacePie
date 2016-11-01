@@ -2,6 +2,8 @@ package com.gdx.spacepie;
 
 public class World {
 	private Rocket rocket;
+	private Asteroid asteroid;
+	
 	World (SpacePie spacePie) {
 		rocket = new Rocket(SpacePie.screenWidth/2 , SpacePie.screenHeight/2);
 	}

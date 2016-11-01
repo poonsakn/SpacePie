@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 public class WorldRenderer {
 	private SpacePie spacePie;
 	private World world;
-	private Texture rocketImg;
+	static Texture rocketImg;
 	private TextureRegion rocketRegion;
 	private float Width, Height, OriginX, OriginY;
 	public WorldRenderer (SpacePie spacePie, World world) {

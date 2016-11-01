@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class GameScreen extends ScreenAdapter {
 	private SpacePie spacePie;
-	private Texture bgImg;
+	static Texture bgImg;
 	OrthographicCamera camera = new OrthographicCamera(SpacePie.screenWidth , SpacePie.screenHeight);
 	World world;
 	WorldRenderer worldRenderer;
