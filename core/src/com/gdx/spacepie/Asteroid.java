@@ -8,14 +8,25 @@ public class Asteroid {
 	Random random = new Random();
 	int randomSize = random.nextInt(200);
 	
-	public Asteroid () {	
-		int randomRange = random.nextInt(500);
+	public Asteroid () {
 		position = new Vector2 (0,0);
-		
+		int randomRange = random.nextInt(400);
+		int randomDirection = random.nextInt(4);
+			
 		position.x = randomRange + World.getRocket().getPosition().x;
 		position.y = randomRange + World.getRocket().getPosition().y;
+		
+		switch (randomDirection) {
+		case 0: break;
+		case 1: position.x *= -1;
+				break;
+		case 2: position.y *= -1;
+				break;
+		case 3: position.x *= -1;
+				position.y *= -1;
+				break;
+		}
 	}
-	
 	public Vector2 getPosition () {
 		return position;
 	}
