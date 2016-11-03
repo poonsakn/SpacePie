@@ -1,13 +1,13 @@
 package com.gdx.spacepie;
 
 public class World {
-	private Rocket rocket;
-	private Asteroid asteroid;
+	private static Rocket rocket;
+	Asteroid asteroid;
 	
 	World (SpacePie spacePie) {
 		rocket = new Rocket(0,0);
 	}
-	Rocket getRocket() {
+	public static Rocket getRocket() {
 		return rocket;
 	}
 	public void update(float delta) {

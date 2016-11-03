@@ -13,7 +13,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class GameScreen extends ScreenAdapter {
 	private SpacePie spacePie;
 	static Texture bgImg, bgImg1, bgImg2, bgImg3, bgImg4;
-	private int mapSize = 10;
+	private int mapSize = 2;
 	OrthographicCamera camera = new OrthographicCamera(SpacePie.screenWidth , SpacePie.screenHeight);
 	World world;
 	WorldRenderer worldRenderer;
@@ -22,7 +22,7 @@ public class GameScreen extends ScreenAdapter {
 	public GameScreen(SpacePie spacePie) {
 		this.spacePie = spacePie;
 		new Texture("rocket.png");
-		bgImg = new Texture("bg.png");
+		bgImg = new Texture("bg2.png");
 		
         bgImg.setWrap(TextureWrap.Repeat, TextureWrap.Repeat);
 //        TextureRegion bgImgRegion = new TextureRegion(bgImg);

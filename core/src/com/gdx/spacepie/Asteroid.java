@@ -7,14 +7,23 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 
 public class Asteroid {
 	private CircleShape asteroid;
-	private Random random;
-	private int r = random.nextInt(500);
-	
+	Random random = new Random();
+	int randomSize = random.nextInt(200);
 	public Asteroid (int x, int y) {	
-		asteroid.setPosition(new Vector2 (x,y));
+		int randomRange = random.nextInt(500);
+		
+		Vector2 asteroidPos = new Vector2();
+		asteroidPos.x = randomRange + World.getRocket().getPosition().x;
+		asteroidPos.y = randomRange + World.getRocket().getPosition().y;
+		
+		asteroid.setPosition(asteroidPos);
 	}
 	
 	public Vector2 getPosition () {
 		return asteroid.getPosition();
+	}
+	
+	public float getSize () {
+		return (float) randomSize;
 	}
 }

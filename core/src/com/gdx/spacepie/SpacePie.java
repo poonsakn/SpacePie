@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class SpacePie extends Game {
-	public  SpriteBatch batch;
+	SpriteBatch batch;
 	
 	public static int screenWidth = 960;
 	public static int screenHeight = 540;
