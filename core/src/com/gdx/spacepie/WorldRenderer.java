@@ -6,15 +6,16 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
 public class WorldRenderer {
-
+	static Texture rocketImg;
 	private SpriteBatch batch;
 	private SpacePie spacePie;
 	private World world;
 	private Asteroid asteroid;
 	private AsteroidRenderer asteroidRenderer;
-	static Texture rocketImg;
 	private TextureRegion rocketRegion;
 	private float Width, Height, OriginX, OriginY;
+	private int countTest = 0;
+	
 	public WorldRenderer (SpacePie spacePie, World world) {
 		this.spacePie = spacePie;
 		this.world = world;
@@ -30,8 +31,15 @@ public class WorldRenderer {
 	}
 	
 	public void render (float delta) {
-		asteroidRenderer = new AsteroidRenderer (this.spacePie.batch, this.world.asteroid);
-		asteroidRenderer.render();
+		for (int i = 0 ; i < 10 ; i++) {
+			if (countTest == 10) {
+				break;
+			}
+			asteroidRenderer = new AsteroidRenderer (this.spacePie.batch, this.world.asteroids.get(i));
+			asteroidRenderer.renderAsteroid();
+			countTest++;
+			System.out.println(countTest);
+		}
 		SpriteBatch batch = spacePie.batch;
 		batch.begin();
 		Vector2 pos = world.getRocket().getPosition();
@@ -43,4 +51,5 @@ public class WorldRenderer {
 				);
 		batch.end();
 	}
+	
 }

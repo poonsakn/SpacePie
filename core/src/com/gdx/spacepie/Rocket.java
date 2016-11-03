@@ -18,7 +18,7 @@ public class Rocket {
 	}
 
 	public void update() {
-		System.out.println(rotation + " ===== " + (int) position.x + "." + (int) position.y);
+//		System.out.println(rotation + " ===== " + (int) position.x + "." + (int) position.y);
 		rotation %= 360;
 	}
 	

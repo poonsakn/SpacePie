@@ -5,8 +5,9 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Asteroid {
 	public Vector2 position;
+	
 	Random random = new Random();
-	int randomSize = random.nextInt(200);
+	int randomSize = random.nextInt(100);
 	
 	public Asteroid () {
 		position = new Vector2 (0,0);

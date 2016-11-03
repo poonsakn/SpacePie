@@ -1,5 +1,8 @@
 package com.gdx.spacepie;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -13,9 +16,9 @@ public class AsteroidRenderer {
 		this.asteroid = asteroid;
 	}
 	
-	public void render () {
+	public void renderAsteroid () {
 		batch.begin();
-		System.out.println(asteroid.getPosition().x);
+//		System.out.println(asteroid.getPosition().x);
 		batch.draw(asteroidImg, asteroid.getPosition().x, asteroid.getPosition().y, asteroid.getSize(), asteroid.getSize());
 		batch.end();
 	}
