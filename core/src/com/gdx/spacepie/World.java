@@ -6,6 +6,7 @@ public class World {
 	
 	World (SpacePie spacePie) {
 		rocket = new Rocket(0,0);
+		asteroid = new Asteroid();
 	}
 	public static Rocket getRocket() {
 		return rocket;

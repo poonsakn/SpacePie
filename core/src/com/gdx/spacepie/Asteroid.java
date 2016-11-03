@@ -1,26 +1,23 @@
 package com.gdx.spacepie;
 
 import java.util.Random;
-
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.CircleShape;
 
 public class Asteroid {
-	private CircleShape asteroid;
+	public Vector2 position;
 	Random random = new Random();
 	int randomSize = random.nextInt(200);
-	public Asteroid (int x, int y) {	
+	
+	public Asteroid () {	
 		int randomRange = random.nextInt(500);
+		position = new Vector2 (0,0);
 		
-		Vector2 asteroidPos = new Vector2();
-		asteroidPos.x = randomRange + World.getRocket().getPosition().x;
-		asteroidPos.y = randomRange + World.getRocket().getPosition().y;
-		
-		asteroid.setPosition(asteroidPos);
+		position.x = randomRange + World.getRocket().getPosition().x;
+		position.y = randomRange + World.getRocket().getPosition().y;
 	}
 	
 	public Vector2 getPosition () {
-		return asteroid.getPosition();
+		return position;
 	}
 	
 	public float getSize () {

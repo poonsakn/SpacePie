@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Rocket {
 	private Vector2 position;
-	private float rocketSpeed = 0;
+	private float rocketSpeed = 7;
 	private static float rotationSpeed = 6;
 	public static int rotation = 0;
 	public static double rotationRadian = Math.toRadians(rotation);

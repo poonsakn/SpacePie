@@ -45,7 +45,6 @@ public class GameScreen extends ScreenAdapter {
 		
 
 		batch.begin();
-//		batch.draw(bgImg, 0,0, bgImg.getWidth(), bgImg.getHeight());
 		
 		int gridX = (int) (bgImg.getWidth() * (Math.floor(world.getRocket().getPosition().x / bgImg.getWidth())));
 		int gridY = (int) (bgImg.getHeight() * (Math.floor(world.getRocket().getPosition().y / bgImg.getHeight())));
@@ -55,10 +54,9 @@ public class GameScreen extends ScreenAdapter {
 			}
 		}
 		
-//		batch.draw(bgImg, gridX, gridY);
 
-		System.out.println("grid" + gridX + "." + gridY + "_____________" 
-				+ (Math.floor(world.getRocket().getPosition().x / bgImg.getWidth())) + " " + (Math.floor(world.getRocket().getPosition().y / bgImg.getWidth())));
+//		System.out.println("grid" + gridX + "." + gridY + "_____________" 
+//				+ (Math.floor(world.getRocket().getPosition().x / bgImg.getWidth())) + " " + (Math.floor(world.getRocket().getPosition().y / bgImg.getWidth())));
 		
 		
 		batch.end();
