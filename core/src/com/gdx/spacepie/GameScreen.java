@@ -30,7 +30,7 @@ public class GameScreen extends ScreenAdapter {
 
 	@Override
 	public void render(float delta) {
-		update(delta);
+		boolean rocketBoosted = update(delta);
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
@@ -45,15 +45,17 @@ public class GameScreen extends ScreenAdapter {
 		batch.end();
 
 		worldRenderer = new WorldRenderer(spacePie, world);
-		worldRenderer.render(delta);
+		worldRenderer.render(delta, rocketBoosted);
 	}
 	
-	private void update (float delta) {
+	private boolean update (float delta) {
 		world.update(delta);
 		updateRocketDirection();
 		
 		camera.position.x = world.getRocket().getPosition().x;
 		camera.position.y = world.getRocket().getPosition().y;
+		
+		return updateRocketSpeed ();
 	}
 	
 	private void renderBackground () {
@@ -68,6 +70,16 @@ public class GameScreen extends ScreenAdapter {
 
 //		System.out.println("grid" + gridX + "." + gridY + "_____________" + (Math.floor(world.getRocket().getPosition().x / bgImg.getWidth())) + " " + (Math.floor(world.getRocket().getPosition().y / bgImg.getWidth())));
 		
+	}
+	private boolean updateRocketSpeed () {
+		if(Gdx.input.isKeyPressed(Keys.SPACE)) {
+			Rocket.boostSpeed(true);
+			return true;
+		}
+		else {
+			Rocket.boostSpeed(false);
+			return false;
+		}
 	}
 	
 	private void updateRocketDirection () {

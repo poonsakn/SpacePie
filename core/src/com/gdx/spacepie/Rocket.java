@@ -4,7 +4,8 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Rocket {
 	private Vector2 position;
-	private float rocketSpeed = 7;
+	private static float originalRocketSpeed = 7;
+	private static float rocketSpeed = originalRocketSpeed;
 	private static float rotationSpeed = 6;
 	public static int rotation = 0;
 	public static double rotationRadian = Math.toRadians(rotation);
@@ -25,6 +26,14 @@ public class Rocket {
 	public void updatePosition() {
 		position.x += rocketSpeed * Math.sin(-rotationRadian) ;
 		position.y += rocketSpeed * Math.cos(-rotationRadian) ;
+	}
+	
+	public static void boostSpeed (boolean keyPressed) {
+		if (keyPressed == true) {
+			rocketSpeed = (float) (originalRocketSpeed*2.3);
+		} else if (keyPressed == false) {
+			rocketSpeed = originalRocketSpeed;
+		}
 	}
 	
 	public static void updateRocketRotation(int key) {
