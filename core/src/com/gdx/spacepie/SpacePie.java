@@ -16,7 +16,6 @@ public class SpacePie extends Game {
 	public void create () {
 		batch = new SpriteBatch();
 		setScreen(new GameScreen(this));
-		
 	}
 
 	@Override

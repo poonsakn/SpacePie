@@ -31,15 +31,10 @@ public class WorldRenderer {
 	}
 	
 	public void render (float delta) {
-		for (int i = 0 ; i < 10 ; i++) {
-			if (countTest == 10) {
-				break;
-			}
-			asteroidRenderer = new AsteroidRenderer (this.spacePie.batch, this.world.asteroids.get(i));
+		
+			asteroidRenderer = new AsteroidRenderer (this.spacePie.batch, this.world.asteroids);
 			asteroidRenderer.renderAsteroid();
-			countTest++;
-			System.out.println(countTest);
-		}
+		
 		SpriteBatch batch = spacePie.batch;
 		batch.begin();
 		Vector2 pos = world.getRocket().getPosition();
