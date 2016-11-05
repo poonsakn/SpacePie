@@ -7,7 +7,7 @@ public class Asteroid {
 	public Vector2 position;
 	
 	Random random = new Random();
-	int randomSize = random.nextInt(100);
+	int randomSize = 30 + random.nextInt(50);
 	
 	public Asteroid () {
 		position = new Vector2 (0,0);

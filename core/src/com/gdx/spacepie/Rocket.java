@@ -5,8 +5,9 @@ import com.badlogic.gdx.math.Vector2;
 public class Rocket {
 	private Vector2 position;
 	private static float originalRocketSpeed = 7;
+	private static float originalRotationSpeed = 5;
 	private static float rocketSpeed = originalRocketSpeed;
-	private static float rotationSpeed = 6;
+	private static float rotationSpeed = originalRotationSpeed;
 	public static int rotation = 0;
 	public static double rotationRadian = Math.toRadians(rotation);
 	
@@ -30,9 +31,11 @@ public class Rocket {
 	
 	public static void boostSpeed (boolean keyPressed) {
 		if (keyPressed == true) {
-			rocketSpeed = (float) (originalRocketSpeed*2.3);
+			rocketSpeed = (float) (originalRocketSpeed*3);
+			rotationSpeed = (float) (originalRotationSpeed*0.75); 
 		} else if (keyPressed == false) {
 			rocketSpeed = originalRocketSpeed;
+			rotationSpeed = originalRotationSpeed;
 		}
 	}
 	

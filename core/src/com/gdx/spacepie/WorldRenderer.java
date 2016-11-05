@@ -43,7 +43,6 @@ public class WorldRenderer {
 		renderRocket(rocketBoosted);
 	}
 	public void renderRocket (boolean rocketBoosted) {
-		SpriteBatch batch = spacePie.batch;
 		batch.begin();
 		Vector2 pos = world.getRocket().getPosition();
 		if (rocketBoosted) {

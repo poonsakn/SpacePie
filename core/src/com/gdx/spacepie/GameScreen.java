@@ -18,7 +18,10 @@ public class GameScreen extends ScreenAdapter {
 	World world;
 	WorldRenderer worldRenderer;
 	SpriteBatch batch;
-	
+	int gridXNumber;
+	int gridYNumber;
+	int gridX;
+	int gridY;
 	
 	public GameScreen(SpacePie spacePie) {
 		this.spacePie = spacePie;
@@ -35,11 +38,8 @@ public class GameScreen extends ScreenAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		batch = spacePie.batch;
-
 		camera.update();
 		batch.setProjectionMatrix(camera.combined);
-		
-
 		batch.begin();
 		renderBackground();
 		batch.end();
@@ -58,18 +58,17 @@ public class GameScreen extends ScreenAdapter {
 		return updateRocketSpeed ();
 	}
 	
-	private void renderBackground () {
-		int gridX = (int) (bgImg.getWidth() * (Math.floor(world.getRocket().getPosition().x / bgImg.getWidth())));
-		int gridY = (int) (bgImg.getHeight() * (Math.floor(world.getRocket().getPosition().y / bgImg.getHeight())));
+	public void renderBackground () {
+		gridXNumber =(int) (Math.floor(world.getRocket().getPosition().x / bgImg.getWidth()));
+		gridYNumber = (int) (Math.floor(world.getRocket().getPosition().y / bgImg.getHeight()));
+		gridX = (int) (bgImg.getWidth() * gridXNumber);
+		gridY = (int) (bgImg.getHeight() * gridYNumber);
 		for (int i = -mapSize; i <= mapSize; i++) {
 			for (int j = -mapSize; j <= mapSize; j++) {
 				batch.draw(bgImg, (i*bgImg.getWidth()) + gridX, (j*bgImg.getHeight()) + gridY);
 			}
 		}
-		
-
-//		System.out.println("grid" + gridX + "." + gridY + "_____________" + (Math.floor(world.getRocket().getPosition().x / bgImg.getWidth())) + " " + (Math.floor(world.getRocket().getPosition().y / bgImg.getWidth())));
-		
+		System.out.println("grid" + gridX + "." + gridY + "_____________" + gridXNumber + " " + gridYNumber);
 	}
 	private boolean updateRocketSpeed () {
 		if(Gdx.input.isKeyPressed(Keys.SPACE)) {
