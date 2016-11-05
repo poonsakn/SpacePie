@@ -44,7 +44,7 @@ public class GameScreen extends ScreenAdapter {
 		renderBackground();
 		batch.end();
 
-		worldRenderer = new WorldRenderer(spacePie, world);
+		worldRenderer = new WorldRenderer(spacePie, world, gridX, gridY);
 		worldRenderer.render(delta, rocketBoosted);
 	}
 	

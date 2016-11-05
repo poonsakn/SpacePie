@@ -17,11 +17,15 @@ public class WorldRenderer {
 	private AsteroidRenderer asteroidRenderer;
 	private float Width, Height, OriginX, OriginY;
 	private int countTest = 0;
+	private int gridX;
+	private int gridY;
 	
-	public WorldRenderer (SpacePie spacePie, World world) {
+	public WorldRenderer (SpacePie spacePie, World world, int gridX, int gridY) {
 		this.spacePie = spacePie;
 		this.world = world;
 		batch = spacePie.batch;
+		this.gridX = gridX;
+		this.gridY = gridY;
 		
 		rocketImg = new Texture("rocket.png");
 		rocketBoostedImg = new Texture("rocket2.png");

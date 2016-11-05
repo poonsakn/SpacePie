@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 public class Rocket {
 	private Vector2 position;
 	private static float originalRocketSpeed = 7;
+	private static float startingRocketSpeed = 0;
 	private static float originalRotationSpeed = 5;
 	private static float rocketSpeed = originalRocketSpeed;
 	private static float rotationSpeed = originalRotationSpeed;
@@ -20,11 +21,15 @@ public class Rocket {
 	}
 
 	public void update() {
-//		System.out.println(rotation + " ===== " + (int) position.x + "." + (int) position.y);
+		System.out.println(rotation + " ===== " + (int) position.x + "." + (int) position.y);
 		rotation %= 360;
 	}
 	
 	public void updatePosition() {
+		if (startingRocketSpeed < originalRocketSpeed) {
+			rocketSpeed = startingRocketSpeed;
+			startingRocketSpeed += 0.15;
+		}
 		position.x += rocketSpeed * Math.sin(-rotationRadian) ;
 		position.y += rocketSpeed * Math.cos(-rotationRadian) ;
 	}
