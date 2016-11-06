@@ -14,6 +14,7 @@ public class Rocket {
 	
 	public Rocket(int x, int y) {
 		position = new Vector2(x,y);
+
 	}
 	
 	public Vector2 getPosition() {
@@ -21,7 +22,7 @@ public class Rocket {
 	}
 
 	public void update() {
-		System.out.println(rotation + " ===== " + (int) position.x + "." + (int) position.y);
+//		System.out.println(rotation + " ===== " + (int) position.x + "." + (int) position.y);
 		rotation %= 360;
 	}
 	
@@ -36,8 +37,8 @@ public class Rocket {
 	
 	public static void boostSpeed (boolean keyPressed) {
 		if (keyPressed == true) {
-			rocketSpeed = (float) (originalRocketSpeed*3);
-			rotationSpeed = (float) (originalRotationSpeed*0.75); 
+			rocketSpeed = (float) (rocketSpeed*1.01);
+			rotationSpeed = (float) (originalRotationSpeed/originalRotationSpeed); 
 		} else if (keyPressed == false) {
 			rocketSpeed = originalRocketSpeed;
 			rotationSpeed = originalRotationSpeed;

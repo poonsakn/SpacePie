@@ -35,15 +35,14 @@ public class WorldRenderer {
 		Width = rocketImg.getWidth();
 		Height = rocketImg.getHeight();
 		OriginX = Width/2;
-		OriginY = Height/2;
-		
+		OriginY = Height/3;
+		asteroidRenderer = new AsteroidRenderer (this.spacePie.batch, this.world.asteroids);
+
 	}
 	
 	public void render (float delta, boolean rocketBoosted) {
 		
-		asteroidRenderer = new AsteroidRenderer (this.spacePie.batch, this.world.asteroids);
-		asteroidRenderer.renderAsteroid();
-		
+		asteroidRenderer.renderAsteroid();		
 		renderRocket(rocketBoosted);
 	}
 	public void renderRocket (boolean rocketBoosted) {

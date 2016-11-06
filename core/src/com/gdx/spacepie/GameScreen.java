@@ -29,6 +29,8 @@ public class GameScreen extends ScreenAdapter {
 		bgImg = new Texture("bg2.png");
 			
 		world = new World (spacePie);
+		worldRenderer = new WorldRenderer(spacePie, world, gridX, gridY);
+
 	}
 
 	@Override
@@ -44,7 +46,7 @@ public class GameScreen extends ScreenAdapter {
 		renderBackground();
 		batch.end();
 
-		worldRenderer = new WorldRenderer(spacePie, world, gridX, gridY);
+		
 		worldRenderer.render(delta, rocketBoosted);
 	}
 	
@@ -68,7 +70,7 @@ public class GameScreen extends ScreenAdapter {
 				batch.draw(bgImg, (i*bgImg.getWidth()) + gridX, (j*bgImg.getHeight()) + gridY);
 			}
 		}
-		System.out.println("grid" + gridX + "." + gridY + "_____________" + gridXNumber + " " + gridYNumber);
+//		System.out.println("grid" + gridX + "." + gridY + "_____________" + gridXNumber + " " + gridYNumber);
 	}
 	private boolean updateRocketSpeed () {
 		if(Gdx.input.isKeyPressed(Keys.SPACE)) {

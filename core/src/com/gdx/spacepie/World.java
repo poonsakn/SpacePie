@@ -9,8 +9,9 @@ public class World {
 
 	World (SpacePie spacePie) {
 		rocket = new Rocket(0,0);
+		System.out.println("world");
 //		asteroid = new Asteroid();
-		for (int i = 0 ; i < 1000 ; i++) {
+		for (int i = 0 ; i < 10000 ; i++) {
 			asteroids.add(new Asteroid());
 		}
 	}
