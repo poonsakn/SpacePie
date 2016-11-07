@@ -13,19 +13,14 @@ public class WorldRenderer {
 	private SpriteBatch batch;
 	private SpacePie spacePie;
 	private World world;
-	private Asteroid asteroid;
 	private AsteroidRenderer asteroidRenderer;
 	private float Width, Height, OriginX, OriginY;
-	private int countTest = 0;
-	private int gridX;
-	private int gridY;
+	
 	
 	public WorldRenderer (SpacePie spacePie, World world, int gridX, int gridY) {
 		this.spacePie = spacePie;
 		this.world = world;
 		batch = spacePie.batch;
-		this.gridX = gridX;
-		this.gridY = gridY;
 		
 		rocketImg = new Texture("rocket.png");
 		rocketBoostedImg = new Texture("rocket2.png");
@@ -47,7 +42,7 @@ public class WorldRenderer {
 	}
 	public void renderRocket (boolean rocketBoosted) {
 		batch.begin();
-		Vector2 pos = world.getRocket().getPosition();
+		Vector2 pos = World.getRocket().getPosition();
 		if (rocketBoosted) {
 			batch.draw(rocketBoostedRegion, pos.x-(Width/2) , pos.y-(Height/2)
 					, OriginX , OriginY //origin x,y

@@ -6,9 +6,7 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.Texture.TextureWrap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class GameScreen extends ScreenAdapter {
 	private SpacePie spacePie;
@@ -50,6 +48,7 @@ public class GameScreen extends ScreenAdapter {
 		worldRenderer.render(delta, rocketBoosted);
 	}
 	
+	@SuppressWarnings("static-access")
 	private boolean update (float delta) {
 		world.update(delta);
 		updateRocketDirection();
@@ -60,6 +59,7 @@ public class GameScreen extends ScreenAdapter {
 		return updateRocketSpeed ();
 	}
 	
+	@SuppressWarnings("static-access")
 	public void renderBackground () {
 		gridXNumber =(int) (Math.floor(world.getRocket().getPosition().x / bgImg.getWidth()));
 		gridYNumber = (int) (Math.floor(world.getRocket().getPosition().y / bgImg.getHeight()));
