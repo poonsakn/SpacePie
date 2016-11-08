@@ -16,7 +16,6 @@ public class WorldRenderer {
 	private AsteroidRenderer asteroidRenderer;
 	private float Width, Height, OriginX, OriginY;
 	
-	
 	public WorldRenderer (SpacePie spacePie, World world, int gridX, int gridY) {
 		this.spacePie = spacePie;
 		this.world = world;

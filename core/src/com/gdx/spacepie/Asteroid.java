@@ -12,7 +12,7 @@ public class Asteroid {
 		position = new Vector2 (0,0);
 		int randomRange = 200 + random.nextInt(40000);
 		int randomDirection = random.nextInt(4);
-		double interval = 2.3;
+		double interval = 5;
 			
 //		position.x = 500 + randomRange + World.getRocket().getPosition().x;
 //		position.y = 500 + randomRange + World.getRocket().getPosition().y;

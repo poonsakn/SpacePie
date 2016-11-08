@@ -1,5 +1,9 @@
 package com.gdx.spacepie;
 
+import java.util.List;
+
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 
 public class Rocket {
@@ -11,10 +15,16 @@ public class Rocket {
 	private static float rotationSpeed = originalRotationSpeed;
 	public static int rotation = 0;
 	public static double rotationRadian = Math.toRadians(rotation);
+	private List<Asteroid> asteroids;
+	Texture rocket = new Texture("rocket.png");
+	int a = 0;
 	
-	public Rocket(int x, int y) {
-		position = new Vector2(x,y);
+	ShapeRenderer shape = new ShapeRenderer ();
 
+	public Rocket(int x, int y, List<Asteroid> asteroids) {
+		position = new Vector2(x,y);
+		this.asteroids = asteroids;
+	
 	}
 	
 	public Vector2 getPosition() {
@@ -33,6 +43,21 @@ public class Rocket {
 		}
 		position.x += rocketSpeed * Math.sin(-rotationRadian) ;
 		position.y += rocketSpeed * Math.cos(-rotationRadian) ;
+	}
+	
+	public int checkCollision () {
+		for (Asteroid asteroid : this.asteroids) {
+			if ((Math.abs(asteroid.getPosition().x-position.x) <= asteroid.getSize())&&(Math.abs(asteroid.getPosition().y-position.y) <= asteroid.getSize())) {
+				System.out.println(asteroid.getPosition().x + "    " + position.x + "    " + asteroid.getSize());
+				System.out.println(asteroid.getPosition().y + "    " + position.y + "\n");
+				rocketSpeed = 0;
+				return a;
+			}
+			a++;
+		}
+		a=0;
+		updatePosition();
+		return 0;
 	}
 	
 	public static void boostSpeed (boolean keyPressed) {
