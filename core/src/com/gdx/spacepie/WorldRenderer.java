@@ -14,7 +14,11 @@ public class WorldRenderer {
 	private SpacePie spacePie;
 	private World world;
 	private AsteroidRenderer asteroidRenderer;
-	private float Width, Height, OriginX, OriginY;
+	private PointRenderer pointRenderer;
+	private float Width;
+	private float Height;
+	private float OriginX;
+	private float OriginY;
 	
 	public WorldRenderer (SpacePie spacePie, World world, int gridX, int gridY) {
 		this.spacePie = spacePie;
@@ -31,12 +35,14 @@ public class WorldRenderer {
 		OriginX = Width/2;
 		OriginY = Height/3;
 		asteroidRenderer = new AsteroidRenderer (this.spacePie.batch, this.world.asteroids);
+		pointRenderer = new PointRenderer (this.spacePie.batch, this.world.points);
 
 	}
 	
 	public void render (float delta, boolean rocketBoosted) {
 		
-		asteroidRenderer.renderAsteroid();		
+		asteroidRenderer.renderAsteroid();
+		pointRenderer.renderPoint();
 		renderRocket(rocketBoosted);
 	}
 	public void renderRocket (boolean rocketBoosted) {

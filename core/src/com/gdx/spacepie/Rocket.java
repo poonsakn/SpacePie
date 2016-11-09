@@ -16,14 +16,18 @@ public class Rocket {
 	public static int rotation = 0;
 	public static double rotationRadian = Math.toRadians(rotation);
 	private List<Asteroid> asteroids;
+	private List<Point> points;
+
 	Texture rocket = new Texture("rocket.png");
 	int a = 0;
+	int b = 0;
 	
 	ShapeRenderer shape = new ShapeRenderer ();
 
-	public Rocket(int x, int y, List<Asteroid> asteroids) {
+	public Rocket(int x, int y, List<Asteroid> asteroids, List<Point> point) {
 		position = new Vector2(x,y);
 		this.asteroids = asteroids;
+		this.points = point;
 	
 	}
 	
@@ -45,11 +49,25 @@ public class Rocket {
 		position.y += rocketSpeed * Math.cos(-rotationRadian) ;
 	}
 	
-	public int checkCollision () {
+	public int checkAsteroidCollision () {
 		for (Asteroid asteroid : this.asteroids) {
 			if ((Math.abs(asteroid.getPosition().x-position.x) <= asteroid.getSize())&&(Math.abs(asteroid.getPosition().y-position.y) <= asteroid.getSize())) {
 				System.out.println(asteroid.getPosition().x + "    " + position.x + "    " + asteroid.getSize());
 				System.out.println(asteroid.getPosition().y + "    " + position.y + "\n");
+				rocketSpeed = 0;
+				return b;
+			}
+			b++;
+		}
+		b=0;
+		updatePosition();
+		return 0;
+	}
+	
+	public int checkPointCollision () {
+		for (Point point : this.points) {
+			if ((Math.abs(point.getPosition().x-position.x) <= point.getSize())&&(Math.abs(point.getPosition().y-position.y) <= point.getSize())) {
+				
 				rocketSpeed = 0;
 				return a;
 			}
