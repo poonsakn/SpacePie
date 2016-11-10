@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 public class WorldRenderer {
 	static Texture rocketImg;
 	static Texture rocketBoostedImg;
+	static Texture gameoverImg;
 	private TextureRegion rocketRegion;
 	private TextureRegion rocketBoostedRegion;
 	private SpriteBatch batch;
@@ -29,6 +30,7 @@ public class WorldRenderer {
 		font = new BitmapFont();
 		rocketImg = new Texture("rocket.png");
 		rocketBoostedImg = new Texture("rocket2.png");
+		gameoverImg = new Texture("gameover.png");
 		rocketRegion = new TextureRegion(rocketImg);
 		rocketBoostedRegion = new TextureRegion(rocketBoostedImg);
 
@@ -56,7 +58,7 @@ public class WorldRenderer {
 					, Width, Height //width, height
 					, (float) 0.5 , (float) 0.5 //scale x,y
 					, Rocket.rotation //rotation
-					);
+					);			
 		}  else {
 			batch.draw(rocketRegion, pos.x-(Width/2) , pos.y-(Height/2)
 					, OriginX , OriginY //origin x,y
@@ -65,8 +67,15 @@ public class WorldRenderer {
 					, Rocket.rotation //rotation
 					);
 		}
-		font.draw(batch, "   " + pos.x + "   " + pos.y , pos.x, pos.y);
+//		font.draw(batch, "   " + pos.x + "   " + pos.y , pos.x, pos.y);
 
 		batch.end();
+	}
+	@SuppressWarnings("static-access")
+	public void gameoverRenderer () {
+		batch.draw(gameoverImg
+				, (float) (world.getRocket().getPosition().x-(0.5*gameoverImg.getWidth()))
+				, (float) (world.getRocket().getPosition().y-(0.2*gameoverImg.getHeight()))
+				, gameoverImg.getWidth(), gameoverImg.getHeight());
 	}
 }

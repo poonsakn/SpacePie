@@ -60,10 +60,9 @@ public class Rocket {
 			collisionDistance.x = (Math.abs(asteroid.getPosition().x-position.x));
 			collisionDistance.y = (Math.abs(asteroid.getPosition().y-position.y));
 			if (((Math.abs(asteroid.getPosition().x-position.x) <= 0.5*asteroid.getSize())&&(Math.abs(asteroid.getPosition().y-position.y) <= 0.5*asteroid.getSize()))&&(startingRocketSpeed >= originalRocketSpeed)) {
-				System.out.println(position.y + "    " + position.x + "    " + asteroid.getSize());
-				System.out.println(asteroid.getPosition().y + "    " + asteroid.getPosition().x + "");
-				System.out.println(collisionDistance.y + "    " + collisionDistance.x + "\n");
-//				rocketSpeed = 0;
+//				System.out.println(position.y + "    " + position.x + "    " + asteroid.getSize());
+//				System.out.println(asteroid.getPosition().y + "    " + asteroid.getPosition().x + "");
+//				System.out.println(collisionDistance.y + "    " + collisionDistance.x + "\n");
 				return 1;
 			}
 		}
@@ -87,7 +86,7 @@ public class Rocket {
 	
 	public static void boostSpeed (boolean keyPressed) {
 		if (keyPressed == true) {
-			rocketSpeed = (float) (rocketSpeed*0);
+			rocketSpeed = (float) (rocketSpeed*1.01);
 			rotationSpeed = (float) (originalRotationSpeed/originalRotationSpeed); 
 		} else if (keyPressed == false) {
 			rocketSpeed = originalRocketSpeed;

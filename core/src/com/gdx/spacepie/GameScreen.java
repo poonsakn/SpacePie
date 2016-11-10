@@ -47,6 +47,11 @@ public class GameScreen extends ScreenAdapter {
 		renderScore();
 		batch.end();		
 		worldRenderer.render(delta, rocketBoosted);
+		batch.begin();
+		if (world.a !=0) {
+			worldRenderer.gameoverRenderer();
+		}
+		batch.end();
 		
 	}
 	
@@ -56,7 +61,6 @@ public class GameScreen extends ScreenAdapter {
 		if (world.a == 0) { 
 			updateRocketDirection();
 		}
-		
 		camera.position.x = world.getRocket().getPosition().x;
 		camera.position.y = world.getRocket().getPosition().y;
 		

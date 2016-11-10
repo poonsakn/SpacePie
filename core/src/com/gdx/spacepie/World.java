@@ -10,8 +10,6 @@ public class World {
 	int a = 0;
 	int score = 0;
 	World (SpacePie spacePie) {
-		System.out.println("world");
-
 		for (int i = 0 ; i < 10000 ; i++) {
 			asteroids.add(new Asteroid());
 		}

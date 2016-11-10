@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class PointRenderer {
-	private Texture pointImg = new Texture("point.png");
+	private Texture pointImg = new Texture("point2.png");
 	private TextureRegion pointRegion = new TextureRegion(pointImg);
 	private SpriteBatch batch;
 	private List<Point> points;
