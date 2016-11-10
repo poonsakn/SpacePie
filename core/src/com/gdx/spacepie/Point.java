@@ -7,7 +7,7 @@ public class Point {
 	public Vector2 position;
 	
 	Random random = new Random();
-	int randomSize = 50 + random.nextInt(50);
+	int randomSize = 50;
 	public Point () {
 		position = new Vector2 (0,0);
 		int randomRange = 200 + random.nextInt(40000);
@@ -32,13 +32,6 @@ public class Point {
 				position.y = (float) ((interval)*randomRange*-random.nextDouble());
 				break;
 		}
-		
-//		if (position.x <= 0) {
-//			position.x -= 400;
-//		} 
-//		if ((position.y <= 0)) {
-//			position.y -=400;
-//		}
 	}
 	public Vector2 getPosition () {
 		return position;

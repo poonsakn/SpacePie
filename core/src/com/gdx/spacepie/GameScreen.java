@@ -6,6 +6,7 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class GameScreen extends ScreenAdapter {
@@ -16,11 +17,12 @@ public class GameScreen extends ScreenAdapter {
 	World world;
 	WorldRenderer worldRenderer;
 	SpriteBatch batch;
+	BitmapFont font;
 	int gridXNumber;
 	int gridYNumber;
 	int gridX;
 	int gridY;
-	
+
 	public GameScreen(SpacePie spacePie) {
 		this.spacePie = spacePie;
 		new Texture("rocket.png");
@@ -28,7 +30,7 @@ public class GameScreen extends ScreenAdapter {
 			
 		world = new World (spacePie);
 		worldRenderer = new WorldRenderer(spacePie, world, gridX, gridY);
-
+		font = new BitmapFont();
 	}
 
 	@Override
@@ -42,16 +44,18 @@ public class GameScreen extends ScreenAdapter {
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		renderBackground();
-		batch.end();
-
-		
+		renderScore();
+		batch.end();		
 		worldRenderer.render(delta, rocketBoosted);
+		
 	}
 	
 	@SuppressWarnings("static-access")
 	private boolean update (float delta) {
 		world.update(delta);
-		updateRocketDirection();
+		if (world.a == 0) { 
+			updateRocketDirection();
+		}
 		
 		camera.position.x = world.getRocket().getPosition().x;
 		camera.position.y = world.getRocket().getPosition().y;
@@ -91,4 +95,9 @@ public class GameScreen extends ScreenAdapter {
 			Rocket.updateRocketRotation(1);
 		} 
 	}	
+	
+	@SuppressWarnings("static-access")
+	private void renderScore () {
+		font.draw(batch, "Score: " + world.score , world.getRocket().getPosition().x, (float) (world.getRocket().getPosition().y+0.4*spacePie.screenHeight));
+	}
 }

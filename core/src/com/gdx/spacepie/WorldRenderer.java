@@ -1,6 +1,7 @@
 package com.gdx.spacepie;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -19,12 +20,13 @@ public class WorldRenderer {
 	private float Height;
 	private float OriginX;
 	private float OriginY;
+	BitmapFont font;
 	
 	public WorldRenderer (SpacePie spacePie, World world, int gridX, int gridY) {
 		this.spacePie = spacePie;
 		this.world = world;
 		batch = spacePie.batch;
-		
+		font = new BitmapFont();
 		rocketImg = new Texture("rocket.png");
 		rocketBoostedImg = new Texture("rocket2.png");
 		rocketRegion = new TextureRegion(rocketImg);
@@ -63,6 +65,8 @@ public class WorldRenderer {
 					, Rocket.rotation //rotation
 					);
 		}
+		font.draw(batch, "   " + pos.x + "   " + pos.y , pos.x, pos.y);
+
 		batch.end();
 	}
 }
