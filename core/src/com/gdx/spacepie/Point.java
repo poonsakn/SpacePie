@@ -7,12 +7,16 @@ public class Point {
 	public Vector2 position;
 	
 	Random random = new Random();
-	int randomSize = 50;
+	Vector2 size;
+	
 	public Point () {
 		position = new Vector2 (0,0);
 		int randomRange = 200 + random.nextInt(40000);
 		int randomDirection = random.nextInt(4);
 		double interval = 5;
+		size = new Vector2 ();
+		size.x = PointRenderer.pointImg.getWidth();
+		size.y = PointRenderer.pointImg.getHeight();
 			
 //		position.x = 500 + randomRange + World.getRocket().getPosition().x;
 //		position.y = 500 + randomRange + World.getRocket().getPosition().y;
@@ -37,7 +41,7 @@ public class Point {
 		return position;
 	}
 	
-	public float getSize () {
-		return (float) randomSize;
+	public Vector2 getSize () {
+		return size;
 	}
 }

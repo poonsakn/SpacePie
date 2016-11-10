@@ -74,7 +74,7 @@ public class Rocket {
 	public int checkPointCollision () {
 		a=0;
 		for (Point point : this.points) {
-			if ((Math.abs(point.getPosition().x-position.x) <= 0.5*point.getSize())&&(Math.abs(point.getPosition().y-position.y) <= 0.5*point.getSize())) {
+			if ((Math.abs(point.getPosition().x-position.x) <= 0.5*point.getSize().x)&&(Math.abs(point.getPosition().y-position.y) <= 0.5*point.getSize().y)) {
 				return a;
 			}
 			a++;
