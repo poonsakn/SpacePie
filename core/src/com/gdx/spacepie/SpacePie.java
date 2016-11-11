@@ -28,8 +28,6 @@ public class SpacePie extends Game {
 	@Override
 	public void dispose () {
 		WorldRenderer.rocketImg.dispose();
-		
-		GameScreen.bgImg.dispose();
 		batch.dispose();
 	}
 }

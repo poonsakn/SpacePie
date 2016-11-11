@@ -14,8 +14,6 @@ public class AsteroidRenderer {
 	private List<Asteroid> asteroids;
 	private float Width;
 	private float Height;
-	private float OriginX;
-	private float OriginY;
 	BitmapFont font;
 	public AsteroidRenderer(SpriteBatch batch, List<Asteroid> asteroid) {
 		this.batch = batch;
@@ -29,8 +27,6 @@ public class AsteroidRenderer {
 
 			Width = asteroid.getSize();
 			Height = asteroid.getSize();
-			OriginX = Width/2;
-			OriginY = Height/2;
 //			batch.draw(asteroidImg, asteroid.getPosition().x, asteroid.getPosition().y, asteroid.getSize(), asteroid.getSize());
 			batch.draw(asteroidRegion, asteroid.getPosition().x-(Width/2), asteroid.getPosition().y-(Height/2)
 					, 0 , 0 //origin x,y
@@ -38,7 +34,7 @@ public class AsteroidRenderer {
 					, (float) 1 , (float) 1 //scale x,y
 					, 0 //rotation
 					);
-//			font.draw(batch, "   " + asteroid.getPosition().x + "   " + asteroid.getPosition().y , asteroid.getPosition().x, asteroid.getPosition().y);
+			font.draw(batch, "   " + asteroid.getPosition().x + "   " + asteroid.getPosition().y , asteroid.getPosition().x, asteroid.getPosition().y);
 		}
 		batch.end();
 		}

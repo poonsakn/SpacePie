@@ -3,7 +3,6 @@ package com.gdx.spacepie;
 import java.util.List;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 
@@ -37,7 +36,7 @@ public class Rocket {
 		return position;
 	}
 
-	public void update() {
+	public void updateDirection() {
 //		System.out.println(rotation + " ===== " + (int) position.x + "." + (int) position.y);
 		rotation %= 360;
 	}
@@ -47,10 +46,6 @@ public class Rocket {
 			rocketSpeed = startingRocketSpeed;
 			startingRocketSpeed += 0.05;
 		}
-//		if (rocketSpeed == 0) {
-//			position = position;
-//			return;
-//		}
 		position.x += rocketSpeed * Math.sin(-rotationRadian) ;
 		position.y += rocketSpeed * Math.cos(-rotationRadian) ;
 	}
@@ -59,7 +54,9 @@ public class Rocket {
 		for (Asteroid asteroid : this.asteroids) {
 			collisionDistance.x = (Math.abs(asteroid.getPosition().x-position.x));
 			collisionDistance.y = (Math.abs(asteroid.getPosition().y-position.y));
-			if (((Math.abs(asteroid.getPosition().x-position.x) <= 0.5*asteroid.getSize())&&(Math.abs(asteroid.getPosition().y-position.y) <= 0.5*asteroid.getSize()))&&(startingRocketSpeed >= originalRocketSpeed)) {
+			if (((Math.abs(asteroid.getPosition().x-position.x) <= 0.5*asteroid.getSize()) 
+					&& (Math.abs(asteroid.getPosition().y-position.y) <= 0.5*asteroid.getSize()))
+					&& (startingRocketSpeed >= originalRocketSpeed)) {
 //				System.out.println(position.y + "    " + position.x + "    " + asteroid.getSize());
 //				System.out.println(asteroid.getPosition().y + "    " + asteroid.getPosition().x + "");
 //				System.out.println(collisionDistance.y + "    " + collisionDistance.x + "\n");
@@ -67,20 +64,19 @@ public class Rocket {
 			}
 		}
 		b=0;
-//		updatePosition();
 		return 0;
 	}
 	
 	public int checkPointCollision () {
 		a=0;
 		for (Point point : this.points) {
-			if ((Math.abs(point.getPosition().x-position.x) <= 0.5*point.getSize().x)&&(Math.abs(point.getPosition().y-position.y) <= 0.5*point.getSize().y)) {
+			if ((Math.abs(point.getPosition().x-position.x) <= 0.5*point.getSize().x) 
+					&& (Math.abs(point.getPosition().y-position.y) <= 0.5*point.getSize().y)) {
 				return a;
 			}
 			a++;
 		}
 		a=0;
-//		updatePosition();
 		return 0;
 	}
 	
@@ -107,4 +103,6 @@ public class Rocket {
 	public void setRocketSpeedZero() {
 		rocketSpeed = 0;
 	}
+	
+	
 }

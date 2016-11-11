@@ -5,12 +5,13 @@ import java.util.List;
 
 public class World {
 	private static Rocket rocket;
-	List <Asteroid> asteroids = new ArrayList <Asteroid> ();
-	List <Point> points = new ArrayList <Point> ();
 	int a = 0;
 	int score = 0;
+	List <Asteroid> asteroids = new ArrayList <Asteroid> ();
+	List <Point> points = new ArrayList <Point> ();
+	
 	World (SpacePie spacePie) {
-		for (int i = 0 ; i < 20000 ; i++) {
+		for (int i = 0 ; i < 1000 ; i++) {
 			asteroids.add(new Asteroid());
 		}
 		
@@ -25,7 +26,7 @@ public class World {
 	}
 	public void update(float delta) {
 		int b = 0;
-		rocket.update();
+		rocket.updateDirection();
 		b = rocket.checkPointCollision();
 		a = rocket.checkAsteroidCollision();
 		
@@ -38,8 +39,5 @@ public class World {
 		if (a == 0) {
 			rocket.updatePosition();
 		}
-		
-		
-
 	}
 }

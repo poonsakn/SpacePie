@@ -14,9 +14,9 @@ public class Asteroid {
 		position = new Vector2 (0,0);
 		int randomRange = 200 + random.nextInt(40000);
 		int randomDirection = random.nextInt(4);
-//		randomSize = 50 + random.nextInt(50);
-		randomSize = 50;
-		double interval = 3.5;
+		randomSize = 50 + random.nextInt(50);
+//		randomSize = 50;
+		double interval = 5;
 		switch (randomDirection) {
 		case 0: position.x = (float) ((interval)*randomRange*random.nextDouble());
 				position.y = (float) ((interval)*randomRange*random.nextDouble());

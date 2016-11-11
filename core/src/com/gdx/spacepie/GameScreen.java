@@ -11,25 +11,19 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class GameScreen extends ScreenAdapter {
 	private SpacePie spacePie;
-	static Texture bgImg, bgImg1, bgImg2, bgImg3, bgImg4;
-	private int mapSize = 2;
 	OrthographicCamera camera = new OrthographicCamera(SpacePie.screenWidth , SpacePie.screenHeight);
 	World world;
 	WorldRenderer worldRenderer;
 	SpriteBatch batch;
 	BitmapFont font;
-	int gridXNumber;
-	int gridYNumber;
-	int gridX;
-	int gridY;
 
 	public GameScreen(SpacePie spacePie) {
 		this.spacePie = spacePie;
 		new Texture("rocket.png");
-		bgImg = new Texture("bg2.png");
+		
 			
 		world = new World (spacePie);
-		worldRenderer = new WorldRenderer(spacePie, world, gridX, gridY);
+		worldRenderer = new WorldRenderer(spacePie, world);
 		font = new BitmapFont();
 	}
 
@@ -41,13 +35,10 @@ public class GameScreen extends ScreenAdapter {
 		
 		batch = spacePie.batch;
 		camera.update();
-		batch.setProjectionMatrix(camera.combined);
-		batch.begin();
-		renderBackground();
-		renderScore();
-		batch.end();		
+		batch.setProjectionMatrix(camera.combined);	
 		worldRenderer.render(delta, rocketBoosted);
 		batch.begin();
+		renderScore();
 		if (world.a !=0) {
 			worldRenderer.gameoverRenderer();
 		}
@@ -67,19 +58,6 @@ public class GameScreen extends ScreenAdapter {
 		return updateRocketSpeed ();
 	}
 	
-	@SuppressWarnings("static-access")
-	public void renderBackground () {
-		gridXNumber =(int) (Math.floor(world.getRocket().getPosition().x / bgImg.getWidth()));
-		gridYNumber = (int) (Math.floor(world.getRocket().getPosition().y / bgImg.getHeight()));
-		gridX = (int) (bgImg.getWidth() * gridXNumber);
-		gridY = (int) (bgImg.getHeight() * gridYNumber);
-		for (int i = -mapSize; i <= mapSize; i++) {
-			for (int j = -mapSize; j <= mapSize; j++) {
-				batch.draw(bgImg, (i*bgImg.getWidth()) + gridX, (j*bgImg.getHeight()) + gridY);
-			}
-		}
-//		System.out.println("grid" + gridX + "." + gridY + "_____________" + gridXNumber + " " + gridYNumber);
-	}
 	private boolean updateRocketSpeed () {
 		if(Gdx.input.isKeyPressed(Keys.SPACE)) {
 			Rocket.boostSpeed(true);
@@ -102,6 +80,7 @@ public class GameScreen extends ScreenAdapter {
 	
 	@SuppressWarnings("static-access")
 	private void renderScore () {
-		font.draw(batch, "Score: " + world.score , world.getRocket().getPosition().x, (float) (world.getRocket().getPosition().y+0.4*spacePie.screenHeight));
+		font.draw(batch, "Score: " + world.score , world.getRocket().getPosition().x
+				, (float) (world.getRocket().getPosition().y+0.4*spacePie.screenHeight));
 	}
 }
