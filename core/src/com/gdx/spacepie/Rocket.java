@@ -45,7 +45,7 @@ public class Rocket {
 	public void updatePosition() {
 		if (startingRocketSpeed < originalRocketSpeed) {
 			rocketSpeed = startingRocketSpeed;
-			startingRocketSpeed += 0.1;
+			startingRocketSpeed += 0.05;
 		}
 //		if (rocketSpeed == 0) {
 //			position = position;

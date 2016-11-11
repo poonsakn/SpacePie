@@ -16,7 +16,7 @@ public class Asteroid {
 		int randomDirection = random.nextInt(4);
 //		randomSize = 50 + random.nextInt(50);
 		randomSize = 50;
-		double interval = 5;
+		double interval = 3.5;
 		switch (randomDirection) {
 		case 0: position.x = (float) ((interval)*randomRange*random.nextDouble());
 				position.y = (float) ((interval)*randomRange*random.nextDouble());
