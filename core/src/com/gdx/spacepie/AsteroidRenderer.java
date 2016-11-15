@@ -15,6 +15,7 @@ public class AsteroidRenderer {
 	private float Width;
 	private float Height;
 	BitmapFont font;
+	
 	public AsteroidRenderer(SpriteBatch batch, List<Asteroid> asteroid) {
 		this.batch = batch;
 		this.asteroids = asteroid;
@@ -34,7 +35,7 @@ public class AsteroidRenderer {
 					, (float) 1 , (float) 1 //scale x,y
 					, 0 //rotation
 					);
-			font.draw(batch, "   " + asteroid.getPosition().x + "   " + asteroid.getPosition().y , asteroid.getPosition().x, asteroid.getPosition().y);
+//			font.draw(batch, "   " + asteroid.getPosition().x + "   " + asteroid.getPosition().y , asteroid.getPosition().x, asteroid.getPosition().y);
 		}
 		batch.end();
 		}

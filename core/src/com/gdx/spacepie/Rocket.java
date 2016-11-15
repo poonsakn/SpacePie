@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class Rocket {
@@ -26,9 +27,12 @@ public class Rocket {
 
 	public Rocket(int x, int y, List<Asteroid> asteroids, List<Point> point) {
 		position = new Vector2(x,y);
+		rotation = 0;
 		this.asteroids = asteroids;
 		this.points = point;
 		collisionDistance = new Vector2();
+		startingRocketSpeed = 0;
+		rotationRadian = Math.toRadians(rotation);
 	}
 	
 	
@@ -38,7 +42,13 @@ public class Rocket {
 
 	public void updateDirection() {
 //		System.out.println(rotation + " ===== " + (int) position.x + "." + (int) position.y);
+//		rotation = Math.abs(rotation%360);
 		rotation %= 360;
+		if (rotation < 0) {
+			rotation = (360+rotation);
+		}
+
+//		rotation = Math.abs(360-rotation);
 	}
 	
 	public void updatePosition() {
@@ -66,7 +76,21 @@ public class Rocket {
 		b=0;
 		return 0;
 	}
-	
+//	public Vector2 positionForCollision (Vector2 positionC, int rotation) {
+//		Vector2 pos;
+//		pos = new Vector2 ();
+//		pos = positionC;
+//		if ((rotation <= 90) || (rotation >= 270)) {
+//			pos.y = (float) (positionC.y-(Math.sin(Math.toRadians(rotation))*WorldRenderer.rocketImg.getHeight()));
+//			System.out.println(Math.sin(Math.toRadians(rotation)) + "sin" + "   rotation   "  +rotation);
+//			System.out.println(Math.sin(Math.toRadians(rotation))*WorldRenderer.rocketImg.getHeight() + "sin*height");
+//		} else if ((rotation > 90) && (rotation < 270)) {
+//			pos.y = (float) (positionC.y-2*(Math.sin(Math.toRadians(rotation-90))*WorldRenderer.rocketImg.getHeight()));
+//		}
+//		System.out.println(positionC.y + " positionC");
+//		System.out.println(pos.y + " pos.y");
+//		return positionC;
+//	}
 	public int checkPointCollision () {
 		a=0;
 		for (Point point : this.points) {

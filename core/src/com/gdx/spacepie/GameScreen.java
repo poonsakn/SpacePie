@@ -16,11 +16,11 @@ public class GameScreen extends ScreenAdapter {
 	WorldRenderer worldRenderer;
 	SpriteBatch batch;
 	BitmapFont font;
+//	int checkGameOver = 0;
 
 	public GameScreen(SpacePie spacePie) {
 		this.spacePie = spacePie;
 		new Texture("rocket.png");
-		
 			
 		world = new World (spacePie);
 		worldRenderer = new WorldRenderer(spacePie, world);
@@ -41,6 +41,7 @@ public class GameScreen extends ScreenAdapter {
 		renderScore();
 		if (world.a !=0) {
 			worldRenderer.gameoverRenderer();
+//			checkGameOver = 1;
 		}
 		batch.end();
 		
@@ -51,13 +52,20 @@ public class GameScreen extends ScreenAdapter {
 		world.update(delta);
 		if (world.a == 0) { 
 			updateRocketDirection();
+		} else if (world.a != 0) {
+			tryAgain();
 		}
 		camera.position.x = world.getRocket().getPosition().x;
 		camera.position.y = world.getRocket().getPosition().y;
 		
 		return updateRocketSpeed ();
 	}
-	
+	private void tryAgain() {
+		if (Gdx.input.isKeyPressed(Keys.ENTER)) {
+			world.init(this.spacePie);
+			worldRenderer = new WorldRenderer(spacePie, world);
+		}
+	}
 	private boolean updateRocketSpeed () {
 		if(Gdx.input.isKeyPressed(Keys.SPACE)) {
 			Rocket.boostSpeed(true);
@@ -80,7 +88,7 @@ public class GameScreen extends ScreenAdapter {
 	
 	@SuppressWarnings("static-access")
 	private void renderScore () {
-		font.draw(batch, "Score: " + world.score , world.getRocket().getPosition().x
+		font.draw(batch, "  Score: " + world.score + "\nHigh score: " + world.highScore, (float) (world.getRocket().getPosition().x-50)
 				, (float) (world.getRocket().getPosition().y+0.4*spacePie.screenHeight));
 	}
 }

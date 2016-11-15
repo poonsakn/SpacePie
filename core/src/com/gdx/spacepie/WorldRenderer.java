@@ -10,6 +10,7 @@ public class WorldRenderer {
 	static Texture rocketImg;
 	static Texture rocketBoostedImg;
 	static Texture gameoverImg;
+	static Texture sensitiveRegion;
 	private TextureRegion rocketRegion;
 	private TextureRegion rocketBoostedRegion;
 	private SpriteBatch batch;
@@ -39,6 +40,7 @@ public class WorldRenderer {
 		rocketImg = new Texture("rocket.png");
 		rocketBoostedImg = new Texture("rocket2.png");
 		gameoverImg = new Texture("gameover.png");
+		sensitiveRegion = new Texture("magnet.png");
 		bgImg = new Texture("bg2.png");
 		rocketRegion = new TextureRegion(rocketImg);
 		rocketBoostedRegion = new TextureRegion(rocketBoostedImg);
@@ -46,7 +48,7 @@ public class WorldRenderer {
 		Width = rocketImg.getWidth();
 		Height = rocketImg.getHeight();
 		OriginX = Width/2;
-		OriginY = Height/3;
+		OriginY = Height/2;
 		asteroidRenderer = new AsteroidRenderer (this.spacePie.batch, this.world.asteroids);
 		pointRenderer = new PointRenderer (this.spacePie.batch, this.world.points);
 		
@@ -57,7 +59,16 @@ public class WorldRenderer {
 		renderBackground();
 		asteroidRenderer.renderAsteroid();
 		pointRenderer.renderPoint();
+//		renderSensitiveRegion();
 		renderRocket(rocketBoosted);
+		
+	}
+	public void renderSensitiveRegion() {
+		batch.begin();
+		Vector2 pos = World.getRocket().getPosition();
+		batch.draw(sensitiveRegion, pos.x-(sensitiveRegion.getWidth()/2), pos.y-sensitiveRegion.getHeight()/2);
+		batch.end();
+		
 	}
 	public void renderRocket (boolean rocketBoosted) {
 		batch.begin();
@@ -77,7 +88,7 @@ public class WorldRenderer {
 					, Rocket.rotation //rotation
 					);
 		}
-		font.draw(batch, "   " + pos.x + "   " + pos.y , pos.x, pos.y);
+		font.draw(batch, "x" + pos.x + "   y" + pos.y + "   r" + Rocket.rotation , pos.x, pos.y);
 		batch.end();
 	}
 	@SuppressWarnings("static-access")
