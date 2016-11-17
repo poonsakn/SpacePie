@@ -29,6 +29,7 @@ public class GameScreen extends ScreenAdapter {
 
 	@Override
 	public void render(float delta) {
+		
 		boolean rocketBoosted = update(delta);
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -41,16 +42,23 @@ public class GameScreen extends ScreenAdapter {
 		renderScore();
 		if (world.a !=0) {
 			worldRenderer.gameoverRenderer();
-//			checkGameOver = 1;
 		}
 		batch.end();
-		
+		if (world.justLaunchGame == true) {
+			worldRenderer.startRenderer();
+			if (Gdx.input.isKeyPressed(Keys.ENTER)) {
+				world.gameLaunched();
+			}
+		}
+
 	}
 	
 	@SuppressWarnings("static-access")
 	private boolean update (float delta) {
-		world.update(delta);
-		if (world.a == 0) { 
+		if (!world.justLaunchGame) {
+			world.update(delta);
+		}
+		if ((world.a == 0) && (!world.justLaunchGame)) { 
 			updateRocketDirection();
 		} else if (world.a != 0) {
 			tryAgain();
@@ -60,6 +68,7 @@ public class GameScreen extends ScreenAdapter {
 		
 		return updateRocketSpeed ();
 	}
+	
 	private void tryAgain() {
 		if (Gdx.input.isKeyPressed(Keys.ENTER)) {
 			world.init(this.spacePie);
@@ -78,17 +87,17 @@ public class GameScreen extends ScreenAdapter {
 	}
 	
 	private void updateRocketDirection () {
-		if(Gdx.input.isKeyPressed(Keys.LEFT)) {
+		if((Gdx.input.isKeyPressed(Keys.LEFT) && (!world.justLaunchGame))) {
 			Rocket.updateRocketRotation(-1);
 		}
-		else if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
+		else if((Gdx.input.isKeyPressed(Keys.RIGHT) && (!world.justLaunchGame))) {
 			Rocket.updateRocketRotation(1);
 		} 
 	}	
 	
 	@SuppressWarnings("static-access")
 	private void renderScore () {
-		font.draw(batch, "  Score: " + world.score + "\nHigh score: " + world.highScore, (float) (world.getRocket().getPosition().x-50)
+		font.draw(batch, "   Score: " + world.score + "\nHigh score: " + world.highScore, (float) (world.getRocket().getPosition().x-50)
 				, (float) (world.getRocket().getPosition().y+0.4*spacePie.screenHeight));
 	}
 }

@@ -10,6 +10,7 @@ public class WorldRenderer {
 	static Texture rocketImg;
 	static Texture rocketBoostedImg;
 	static Texture gameoverImg;
+	static Texture spacepieImg;
 	static Texture sensitiveRegion;
 	private TextureRegion rocketRegion;
 	private TextureRegion rocketBoostedRegion;
@@ -41,6 +42,7 @@ public class WorldRenderer {
 		rocketBoostedImg = new Texture("rocket2.png");
 		gameoverImg = new Texture("gameover.png");
 		sensitiveRegion = new Texture("magnet.png");
+		spacepieImg = new Texture("spacepie.png");
 		bgImg = new Texture("bg2.png");
 		rocketRegion = new TextureRegion(rocketImg);
 		rocketBoostedRegion = new TextureRegion(rocketBoostedImg);
@@ -88,15 +90,27 @@ public class WorldRenderer {
 					, Rocket.rotation //rotation
 					);
 		}
-		font.draw(batch, "x" + pos.x + "   y" + pos.y + "   r" + Rocket.rotation , pos.x, pos.y);
+//		font.draw(batch, "x" + pos.x + "   y" + pos.y + "   r" + Rocket.rotation , pos.x, pos.y);
 		batch.end();
 	}
 	@SuppressWarnings("static-access")
+	public void startRenderer () {
+		batch.begin();
+		batch.draw(spacepieImg
+				, (float) (world.getRocket().getPosition().x-(0.5*gameoverImg.getWidth()))
+				, (float) (world.getRocket().getPosition().y-(0.2*gameoverImg.getHeight()))
+				, spacepieImg.getWidth(), spacepieImg.getHeight());
+		font.draw(batch, "press \'enter\' to start." , world.getRocket().getPosition().x-80, world.getRocket().getPosition().y-200);
+		batch.end();
+		System.out.println(2);
+	}
 	public void gameoverRenderer () {
 		batch.draw(gameoverImg
 				, (float) (world.getRocket().getPosition().x-(0.5*gameoverImg.getWidth()))
 				, (float) (world.getRocket().getPosition().y-(0.2*gameoverImg.getHeight()))
 				, gameoverImg.getWidth(), gameoverImg.getHeight());
+		font.draw(batch, "press \'enter\' to try again." , world.getRocket().getPosition().x-80, world.getRocket().getPosition().y-200);
+
 	}
 	
 	@SuppressWarnings("static-access")
@@ -114,4 +128,5 @@ public class WorldRenderer {
 		batch.end();
 //		System.out.println("grid" + gridX + "." + gridY + "_____________" + gridXNumber + " " + gridYNumber);
 	}
+	
 }

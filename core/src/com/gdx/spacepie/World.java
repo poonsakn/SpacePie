@@ -9,6 +9,7 @@ public class World {
 	int a = 0;
 	int score = 0;
 	int highScore = 0;
+	boolean justLaunchGame = true;
 	static List <Asteroid> asteroids = new ArrayList <Asteroid> ();
 	static List <Point> points = new ArrayList <Point> ();
 	
@@ -16,6 +17,9 @@ public class World {
 		init(spacePie);
 	}
 	public void init(SpacePie spacePie) {
+//		if (a != 0) {
+//			justLaunchGame = false;
+//		}
 		score = 0;
 		asteroids = new ArrayList <Asteroid> ();
 		points = new ArrayList <Point> ();
@@ -40,7 +44,7 @@ public class World {
 		a = rocket.checkAsteroidCollision();
 		
 		if (b != 0) {
-			System.out.println(b);
+//			System.out.println(b);
 			points.remove(b);
 			b=0;
 			score++;
@@ -51,5 +55,9 @@ public class World {
 		if (a == 0) {
 			rocket.updatePosition();
 		}
+	}
+	
+	public void gameLaunched () {
+		this.justLaunchGame = false;
 	}
 }
