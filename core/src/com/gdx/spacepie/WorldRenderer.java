@@ -63,8 +63,7 @@ public class WorldRenderer {
 		renderRocket(rocketBoosted);
 		
 	}
-		
-	}
+	
 	public void renderRocket (boolean rocketBoosted) {
 		batch.begin();
 		Vector2 pos = World.getRocket().getPosition();
