@@ -11,7 +11,6 @@ public class WorldRenderer {
 	static Texture rocketBoostedImg;
 	static Texture gameoverImg;
 	static Texture spacepieImg;
-	static Texture sensitiveRegion;
 	private TextureRegion rocketRegion;
 	private TextureRegion rocketBoostedRegion;
 	private SpriteBatch batch;
@@ -41,7 +40,6 @@ public class WorldRenderer {
 		rocketImg = new Texture("rocket.png");
 		rocketBoostedImg = new Texture("rocket2.png");
 		gameoverImg = new Texture("gameover.png");
-		sensitiveRegion = new Texture("magnet.png");
 		spacepieImg = new Texture("spacepie.png");
 		bgImg = new Texture("bg2.png");
 		rocketRegion = new TextureRegion(rocketImg);
@@ -61,15 +59,10 @@ public class WorldRenderer {
 		renderBackground();
 		asteroidRenderer.renderAsteroid();
 		pointRenderer.renderPoint();
-//		renderSensitiveRegion();
+
 		renderRocket(rocketBoosted);
 		
 	}
-	public void renderSensitiveRegion() {
-		batch.begin();
-		Vector2 pos = World.getRocket().getPosition();
-		batch.draw(sensitiveRegion, pos.x-(sensitiveRegion.getWidth()/2), pos.y-sensitiveRegion.getHeight()/2);
-		batch.end();
 		
 	}
 	public void renderRocket (boolean rocketBoosted) {
